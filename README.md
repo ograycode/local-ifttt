@@ -17,3 +17,8 @@ The program looks for `config.json` in the same location in which it is being ex
   }
 ]
 ```
+
+# Command Line Options
+
+* -config string
+  * Sets the location and name of the config file (default "config.json")

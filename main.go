@@ -5,8 +5,12 @@ import "io/ioutil"
 import "log"
 import "os/exec"
 import "time"
+import "flag"
+
+var configLocation = flag.String("config", "config.json", "Sets the location and name of the config file")
 
 func main() {
+	flag.Parse()
 	log.Println("Local-IFTTT Starting...")
 	log.Println("Reading task config")
 	configContents := readConfig()
@@ -34,9 +38,9 @@ func schedule(tasks []Task) {
 }
 
 func readConfig() []byte {
-	contents, err := ioutil.ReadFile("config.json")
+	contents, err := ioutil.ReadFile(*configLocation)
 	if err != nil {
-		log.Panic("Error reading config.json", err)
+		log.Panic("Error reading config.json: ", err)
 	}
 	return contents
 }
