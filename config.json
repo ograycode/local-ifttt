@@ -1,0 +1,9 @@
+[
+  {
+    "name": "Find File Task",
+    "ifThis": "ls | grep x -q",
+    "thenThat": "touch found",
+    "sleep": 10,
+    "alwaysPerform": false
+  }
+]
