@@ -14,7 +14,6 @@ type Task struct {
 }
 
 func (t *Task) Run(done chan bool) {
-	time.Sleep(time.Duration(t.Sleep) * time.Second)
 	if t.ExecuteIfThis() {
 		if t.AlwaysPerform || !t.LastSuccess {
 			log.Println(t.Name, "if this successful, executing then that")
@@ -24,7 +23,12 @@ func (t *Task) Run(done chan bool) {
 	} else {
 		t.LastSuccess = false
 	}
+	t.SleepNow()
 	done <- true
+}
+
+func (t *Task) SleepNow() {
+	time.Sleep(time.Duration(t.Sleep) * time.Second)
 }
 
 func (t *Task) ExecuteThenThat() bool {
